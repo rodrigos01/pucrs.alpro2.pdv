@@ -1,5 +1,7 @@
 package pucrs.alpro2.pdv.model;
 
+import pucrs.alpro2.pdv.exceptions.PdvException;
+
 /**
  * A classe <code>Produto</code> representa os dados de um tipo de produto a
  * venda no supermercado.
@@ -48,8 +50,11 @@ public class Produto {
 	private long valorEmCentavos;
 
 	public Produto(final String ian, final String descricao,
-			final String unidade, final long valorEmCentavos) {
+			final String unidade, final long valorEmCentavos) throws PdvException {
 		super();
+		if(valorEmCentavos <= 0 || ian == null || descricao == null || unidade == null) {
+			throw new PdvException();
+		}
 		this.ian = ian;
 		this.descricao = descricao;
 		this.unidade = unidade;

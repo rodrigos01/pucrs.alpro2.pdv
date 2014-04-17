@@ -1,5 +1,7 @@
 package pucrs.alpro2.pdv.model;
 
+import pucrs.alpro2.pdv.exceptions.PdvException;
+
 /**
  * A classe <code>Cliente</code> representa um cliente de supermercado.
  * 
@@ -31,8 +33,11 @@ public class Cliente {
 	private String cpf;
 	private String email;
 
-	public Cliente(final String cpf, final String email) {
+	public Cliente(final String cpf, final String email) throws PdvException {
 		super();
+		if(cpf == null || !cpf.matches("(\\d{3}.){2}\\d{3}-\\d{2}")) {
+			throw new PdvException();
+		}
 		this.cpf = cpf;
 		this.email = email;
 	}
